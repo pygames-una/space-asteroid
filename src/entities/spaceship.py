@@ -7,8 +7,8 @@ class Spaceship(pygame.sprite.Sprite):
     pygame.sprite.Sprite.__init__(self)
     pygame.mixer.init()
     # imagenes del objeto
-    self.img_spaceship = pygame.image.load("./assets/img/spaceship.png")
-    self.img_spaceship_explotion = pygame.image.load("./assets/img/explosion-spaceship.png")
+    self.img_spaceship = pygame.image.load("./assets/images/spaceship.png")
+    self.img_spaceship_explotion = pygame.image.load("./assets/images/explosion-spaceship.png")
     # caja de colision
     self.rect = self.img_spaceship.get_rect()
     # Crear la máscara de colisión a partir de la imagen, no toma los pixeles transparentes
@@ -19,7 +19,7 @@ class Spaceship(pygame.sprite.Sprite):
     self.speed = 10
     self.alive = True
     self.list_shot = []
-    self.sound_shoot = pygame.mixer.Sound("./assets/sound/shoot.wav")
+    self.sound_shoot = pygame.mixer.Sound("./assets/sounds/effects/shoot.wav")
     
   def move(self):
     

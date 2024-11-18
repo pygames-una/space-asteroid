@@ -2,9 +2,9 @@ import pygame
 import random
 
 images = [
-  "./assets/img/asteroid-1.png",
-  "./assets/img/asteroid-2.png",
-  "./assets/img/asteroid-3.png"
+  "./assets/images/asteroid-1.png",
+  "./assets/images/asteroid-2.png",
+  "./assets/images/asteroid-3.png"
 ]
 
 class Asteroid(pygame.sprite.Sprite):
@@ -12,7 +12,7 @@ class Asteroid(pygame.sprite.Sprite):
   def __init__(self, position_x, position_y):
     pygame.sprite.Sprite.__init__(self)
     self.img_asteroid = pygame.image.load(self.get_random_image())
-    self.img_asteroid_explotion = pygame.image.load("./assets/img/explosion-asteroid.png")
+    self.img_asteroid_explotion = pygame.image.load("./assets/images/explosion-asteroid.png")
     self.rect = self.img_asteroid.get_rect()
     self.mask = pygame.mask.from_surface(self.img_asteroid)
     self.speed = 1

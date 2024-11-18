@@ -2,9 +2,11 @@
 
 
 ## Comandos django
-1. Crear entorno virtual
+1. Crear entorno virtual recomendado python 3.11
 ```  
   python3 -m venv ./venv
+
+  python3.11 -m venv ./venv
 ```
    
 2.  Activar el entorno virtual

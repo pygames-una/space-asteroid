@@ -4,7 +4,7 @@ class Missile(pygame.sprite.Sprite):
   
   def __init__(self, position_x, position_y):
     pygame.sprite.Sprite.__init__(self)
-    self.img_missile = pygame.image.load("./assets/img/missile-2.png")
+    self.img_missile = pygame.image.load("./assets/images/missile-2.png")
     self.rect = self.img_missile.get_rect()
     self.speed = 10
     
