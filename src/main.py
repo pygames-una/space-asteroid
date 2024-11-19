@@ -9,6 +9,7 @@ from utils.sounds_game import SoundsGame
 
 # componentes
 from components.text_game import TextGame
+from components.window_game import WindowGame
 
 # entidades
 from entities.spaceship import Spaceship
@@ -21,6 +22,7 @@ spaceship = Spaceship()
 sound_game = SoundsGame()
 variable_game = GameGlobalVariables()
 text_game = TextGame()
+window_game = WindowGame(variable_game.window_width, variable_game.window_height)
 
 
 def load_asteroid(x,y):
@@ -47,14 +49,8 @@ def game():
   
   clock = pygame.time.Clock()
   
-  # definir ventana
-  window = pygame.display.set_mode((variable_game.window_width, variable_game.window_height))
-  
-  # fondo
-  background = pygame.image.load("./assets/images/space.jpg")
-  
-  # titulo
-  pygame.display.set_caption("Space Meteore")
+  # definir titulo a ventana
+  window_game.add_title()
   
   
   
@@ -80,13 +76,13 @@ def game():
               spaceship.shoot(x, y)
   
     # Dibujar fondo
-    window.blit(background, (0, 0))
+    window_game.draw_background()
     
     # marcador de puntos
-    text_game.points(window, variable_game.points)
+    text_game.points(window_game.window, variable_game.points)
 
     # Dibujar y mover la nave
-    spaceship.draw(window)
+    spaceship.draw(window_game.window)
     spaceship.move()
 
     # Generar asteroides en intervalos
@@ -98,7 +94,7 @@ def game():
 
     # Actualizar y dibujar asteroides
     for asteroid in list_asteroid[:]:
-      asteroid.draw(window)
+      asteroid.draw(window_game.window)
       asteroid.trajectory()
       if asteroid.rect.top > variable_game.window_height:
         list_asteroid.remove(asteroid)
@@ -116,7 +112,7 @@ def game():
 
     # Actualizar y dibujar disparos
     for shoot in spaceship.list_shot[:]: 
-      shoot.draw(window)
+      shoot.draw(window_game.window)
       shoot.trajectory()
       if shoot.rect.top < -10:
           spaceship.list_shot.remove(shoot)
@@ -134,7 +130,7 @@ def game():
       for asteroid in list_asteroid:
         list_asteroid.remove(asteroid)
       
-      text_game.game_over(window)
+      text_game.game_over(window_game.window)
       sound_game.fade_sound(1500)
       
 
