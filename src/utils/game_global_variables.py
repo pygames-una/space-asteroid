@@ -1,12 +1,16 @@
 from abc import ABC
 
 class GameGlobalVariables(ABC):
-    end_game = False
+    #variables globales
     points = 0
+    window_width = 800
+    window_height = 600
+    is_playing = True
+    end_game = False
     consumables = [None, None, None]
     
-    def end_game_change(self):
-        self.end_game = not self.end_game
+    def is_playing_change(self):
+        self.is_playing = not self.is_playing
     
     def add_consumable(self, consumable):
         for i in range(3):
