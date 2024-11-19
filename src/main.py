@@ -3,8 +3,12 @@ import sys
 from pygame.locals import *
 from random import randint
 
+# utilidades
 from utils.game_global_variables import GameGlobalVariables
 from utils.sounds_game import SoundsGame
+
+# componentes
+from components.text_game import TextGame
 
 # entidades
 from entities.spaceship import Spaceship
@@ -16,6 +20,7 @@ list_asteroid = []
 spaceship = Spaceship()
 sound_game = SoundsGame()
 variable_game = GameGlobalVariables()
+text_game = TextGame()
 
 
 def load_asteroid(x,y):
@@ -23,14 +28,13 @@ def load_asteroid(x,y):
   list_asteroid.append(asteroid)
   
 def game_over():
-  print("fin")
-  pygame.mixer.init()
-  pygame.time.delay(1500)
+
+  # sonido de fin de juego
   sound_game.game_over()
   
   #global is_playing
   global list_asteroid
-  #is_playing = False
+  # terminar el juego
   variable_game.is_playing_change()
 
 
@@ -40,6 +44,7 @@ def game():
   pygame.init()
 
   last_asteroid_time = 0
+  
   clock = pygame.time.Clock()
   
   # definir ventana
@@ -50,14 +55,12 @@ def game():
   
   # titulo
   pygame.display.set_caption("Space Meteore")
+  
+  
+  
   # sonido de fondo
   sound_game.background_sound()
   
-  # tipografia para textos
-  font_points = pygame.font.SysFont("Consolas", 18)
-  color_font = (120, 200, 40)
-  font_game_over = pygame.font.SysFont("Consolas", 50, bold=True)
-  color_font_end = (245, 21, 61)
 
   # Ciclo del juego
   while True:
@@ -80,8 +83,7 @@ def game():
     window.blit(background, (0, 0))
     
     # marcador de puntos
-    text_points = font_points.render(f"Points: {str(variable_game.points)}", 0, color_font)
-    window.blit(text_points, (10,10))
+    text_game.points(window, variable_game.points)
 
     # Dibujar y mover la nave
     spaceship.draw(window)
@@ -131,10 +133,9 @@ def game():
       # remover los asteroides de la ventana
       for asteroid in list_asteroid:
         list_asteroid.remove(asteroid)
-    
-      text_game_over = font_game_over.render("Game Over", True, color_font_end)
-      window.blit(text_game_over, (250,250))
-      pygame.mixer.music.fadeout(1500)
+      
+      text_game.game_over(window)
+      sound_game.fade_sound(1500)
       
 
     # Actualizar pantalla y controlar FPS

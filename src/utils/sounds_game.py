@@ -14,8 +14,8 @@ class SoundsGame():
 
     def game_over(self):
       sound = pygame.mixer.Sound("./assets/sounds/music/game-over.wav")
+      pygame.time.delay(1500)
       sound.play()
-
 
     def explotion_asteroid(self):
       sound = pygame.mixer.Sound("./assets/sounds/effects/explosion-asteroid.wav")
